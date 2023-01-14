@@ -23,4 +23,9 @@ FUNCTION playRound(playerSelection, computerSelection)
     else 
         return 'Wrong input!'
     
-        
+FUNCTION game using playRound to play a 5 round game and keeping the score
+    for i 1 to 5
+        increment i
+        playRound
+        set playersScore and computerScore variables based on round result (0 draw, 1 win pc, 2 win player)
+        log the results after each round and at the end determine the winner
