@@ -3,6 +3,9 @@ console.log ('Hello World!');
 const computerSelection = getComputerChoice();
 const playerSelection = 'rock';
 
+let result;
+let message;
+
 function getComputerChoice() {
     let choice = Math.random();
     if (choice < 0.33) {
@@ -25,9 +28,6 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection = getComputerChoice()) {
     playerSelection = playerSelection.toLowerCase();
-    let result;
-    let message;
-    console.log(playerSelection);
 
     if (playerSelection === computerSelection) {
         result = 0;
@@ -51,7 +51,8 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
         message = `You win, ${playerSelection} beats ${computerSelection}!`;
     }
 
-    console.log(message);
-
     return result;
 }
+
+console.log(playRound(playerSelection, computerSelection))
+console.log(message)
