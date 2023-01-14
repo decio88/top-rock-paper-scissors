@@ -5,6 +5,8 @@ const playerSelection = 'rock';
 
 let result;
 let message;
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
     let choice = Math.random();
@@ -54,5 +56,27 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
     return result;
 }
 
-console.log(playRound(playerSelection, computerSelection))
-console.log(message)
+function game() {
+    for (let i = 0; i < 5; i++) {
+        playRound(playerSelection);
+        console.log(result, message);
+        if (result === 1) {
+            computerScore += 1;
+        } else if (result === 2) {
+            playerScore +=1;
+        } 
+
+    }
+
+    if (playerScore === computerScore) {
+        console.log("Draw!");
+    } else if (playerScore > computerScore) {
+        console.log("You win!");
+    } else {
+        console.log('You lose!');
+    }
+
+    console.log(playerScore, computerScore)
+}
+
+game();
