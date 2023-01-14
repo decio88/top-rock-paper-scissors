@@ -59,7 +59,7 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
 
 function game() {
   for (let i = 0; i < 5; i++) {
-    playRound(playerSelection);
+    playRound(prompt("Choose rock, paper or scissors"));
     console.log(result, message);
     if (result === 1) {
       computerScore += 1;
@@ -77,6 +77,5 @@ function game() {
   }
 
   console.log(playerScore, computerScore);
+  return [playerScore, computerScore];
 }
-
-game();
