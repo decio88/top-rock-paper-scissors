@@ -5,6 +5,23 @@ let message;
 let playerScore = 0;
 let computerScore = 0;
 
+const btnRock = document.querySelector("#rock");
+const btnPaper = document.querySelector("#paper");
+const btnScissors = document.querySelector("#scissors");
+
+btnRock.addEventListener("click", function () {
+  playRound("rock");
+  console.log(result);
+});
+btnPaper.addEventListener("click", function () {
+  playRound("paper");
+  console.log(result);
+});
+btnScissors.addEventListener("click", function () {
+  playRound("scissors");
+  console.log(result);
+});
+
 function getComputerChoice() {
   let choice = Math.random();
   if (choice < 0.33) {
@@ -57,7 +74,7 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
   return result;
 }
 
-function game() {
+/*function game() {
   for (let i = 0; i < 5; i++) {
     playRound(prompt("Choose rock, paper or scissors"));
     console.log(result, message);
@@ -78,4 +95,4 @@ function game() {
 
   console.log(playerScore, computerScore);
   return [playerScore, computerScore];
-}
+}*/
