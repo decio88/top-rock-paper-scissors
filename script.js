@@ -8,18 +8,25 @@ let computerScore = 0;
 const btnRock = document.querySelector("#rock");
 const btnPaper = document.querySelector("#paper");
 const btnScissors = document.querySelector("#scissors");
+const resDiv = document.querySelector(".results");
 
 btnRock.addEventListener("click", function () {
   playRound("rock");
+  showRoundResult();
   console.log(result);
+  console.log(message);
 });
 btnPaper.addEventListener("click", function () {
   playRound("paper");
+  showRoundResult();
   console.log(result);
+  console.log(message);
 });
 btnScissors.addEventListener("click", function () {
   playRound("scissors");
+  showRoundResult();
   console.log(result);
+  console.log(message);
 });
 
 function getComputerChoice() {
@@ -96,3 +103,7 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
   console.log(playerScore, computerScore);
   return [playerScore, computerScore];
 }*/
+
+function showRoundResult() {
+  resDiv.textContent = message;
+}
