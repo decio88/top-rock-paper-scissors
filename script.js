@@ -12,19 +12,19 @@ const resDiv = document.querySelector(".results");
 
 btnRock.addEventListener("click", function () {
   playRound("rock");
-  showRoundResult();
+  showRoundResult(message);
   console.log(result);
   console.log(message);
 });
 btnPaper.addEventListener("click", function () {
   playRound("paper");
-  showRoundResult();
+  showRoundResult(message);
   console.log(result);
   console.log(message);
 });
 btnScissors.addEventListener("click", function () {
   playRound("scissors");
-  showRoundResult();
+  showRoundResult(message);
   console.log(result);
   console.log(message);
 });
@@ -54,30 +54,26 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
 
   if (playerSelection === computerSelection) {
     result = 0;
+    message = `Draw, both players chose ${playerSelection}`;
   } else if (
     (playerSelection === "rock" && computerSelection === "paper") ||
     (playerSelection === "paper" && computerSelection === "scissors") ||
     (playerSelection === "scissors" && computerSelection === "rock")
   ) {
     result = 1;
+    message = `You lose, ${computerSelection} beats ${playerSelection} !`;
+    computerScore += 1;
   } else if (
     (playerSelection === "rock" && computerSelection === "scissors") ||
     (playerSelection === "paper" && computerSelection === "rock") ||
     (playerSelection === "scissors" && computerSelection === "paper")
   ) {
     result = 2;
-  } else {
-    alert("wrong input!");
-  }
-
-  if (result === 0) {
-    message = `Draw, both players chose ${playerSelection}`;
-  } else if (result === 1) {
-    message = `You lose, ${computerSelection} beats ${playerSelection} !`;
-  } else if (result === 2) {
     message = `You win, ${playerSelection} beats ${computerSelection}!`;
+    playerScore += 1;
   }
 
+  showGameScore();
   return result;
 }
 
@@ -104,6 +100,13 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
   return [playerScore, computerScore];
 }*/
 
-function showRoundResult() {
-  resDiv.textContent = message;
+function showRoundResult(text) {
+  let para = document.createElement("p");
+  para.textContent = text;
+  resDiv.appendChild(para);
+}
+
+function showGameScore() {
+  document.querySelector("#computerScore").textContent = computerScore;
+  document.querySelector("#playerScore").textContent = playerScore;
 }
