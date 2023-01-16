@@ -4,6 +4,7 @@ let result;
 let message;
 let playerScore = 0;
 let computerScore = 0;
+let i = 0;
 
 const btnRock = document.querySelector("#rock");
 const btnPaper = document.querySelector("#paper");
@@ -12,19 +13,16 @@ const resDiv = document.querySelector(".results");
 
 btnRock.addEventListener("click", function () {
   playRound("rock");
-  showRoundResult(message);
   console.log(result);
   console.log(message);
 });
 btnPaper.addEventListener("click", function () {
   playRound("paper");
-  showRoundResult(message);
   console.log(result);
   console.log(message);
 });
 btnScissors.addEventListener("click", function () {
   playRound("scissors");
-  showRoundResult(message);
   console.log(result);
   console.log(message);
 });
@@ -52,6 +50,8 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection = getComputerChoice()) {
   playerSelection = playerSelection.toLowerCase();
 
+  ++i;
+
   if (playerSelection === computerSelection) {
     result = 0;
     message = `Draw, both players chose ${playerSelection}`;
@@ -74,6 +74,8 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
   }
 
   showGameScore();
+  showRoundResult(message);
+  checkEndGame();
   return result;
 }
 
@@ -88,13 +90,7 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
     }
   }
 
-  if (playerScore === computerScore) {
-    console.log("Draw!");
-  } else if (playerScore > computerScore) {
-    console.log("You win!");
-  } else {
-    console.log("You lose!");
-  }
+  
 
   console.log(playerScore, computerScore);
   return [playerScore, computerScore];
@@ -102,11 +98,41 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
 
 function showRoundResult(text) {
   let para = document.createElement("p");
-  para.textContent = text;
+  para.classList.add("roundResult");
+  para.textContent = `Round ${i}: ` + text;
   resDiv.appendChild(para);
 }
 
 function showGameScore() {
   document.querySelector("#computerScore").textContent = computerScore;
   document.querySelector("#playerScore").textContent = playerScore;
+}
+
+function checkEndGame() {
+  if (i < 5) {
+    return;
+  } else if (i === 5) {
+    let endGameRes = document.createElement("h1");
+    if (playerScore === computerScore) {
+      endGameRes.textContent = "Draw!";
+    } else if (playerScore > computerScore) {
+      endGameRes.textContent = "You win!";
+    } else {
+      endGameRes.textContent = "You lose!";
+    }
+    resDiv.appendChild(endGameRes);
+  } else {
+    resetGame();
+  }
+}
+
+function resetGame() {
+  while (resDiv.firstChild) {
+    resDiv.removeChild(resDiv.firstChild);
+  }
+
+  playerScore = 0;
+  computerScore = 0;
+  i = 0;
+  showGameScore();
 }
