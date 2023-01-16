@@ -1,3 +1,45 @@
 * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.scoreContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+body {
+  margin: 0;
+  padding: 30px;
+}
+
+.scoreContainer div {
+  width: 300px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: aquamarine;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.btns {
+  display: flex;
+  padding: 30px;
+  justify-content: space-around;
+}
+
+.results {
+  text-align: center;
+}
+
+.results h1 {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  background-color: greenyellow;
+  border-radius: 10px;
+  padding: 10px;
+}
